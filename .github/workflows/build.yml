@@ -42,6 +42,11 @@ jobs:
           distribution: temurin
           cache: gradle
 
+      - name: Allow larger on-screen buttons
+        run: |
+          sed -i 's/sizeSlider.max = "64";/sizeSlider.max = "160";/; s/sizeSlider.min = "32";/sizeSlider.min = "40";/' nwcompat/patches/common/gamepad.js
+          grep -n "sizeSlider.m" nwcompat/patches/common/gamepad.js
+
       - name: Build nwcompat
         run: |
           cd nwcompat
